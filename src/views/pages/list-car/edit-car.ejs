@@ -1,0 +1,105 @@
+<h1 class="text-xl font-bold mb-4">
+  Edit Car
+</h1>
+
+<div class="bg-white p-4 rounded-sm">
+  <div class="mb-4 flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04" for="name">
+      Name<span class="text-danger">*</span>
+    </label>
+    <input value="<%= car.name %>" class="input-primary" type="text" name="name" id="name" placeholder="name" required>
+  </div>
+  <div class="mb-4 flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04" for="price">
+      Price<span class="text-danger">*</span>
+    </label>
+    <input value="<%= car.price %>" class="input-primary" type="text" name="price" id="price" placeholder="price" required>
+  </div>
+  <div class="mb-3 text-xs font-light">
+    <div class="flex items-center">
+      <label class="block w-36 text-neutral04" for="foto" required>
+        Foto<span class="text-danger">*</span>
+      </label>
+      <div>
+        <input class="input-primary" type="file" name="foto" id="foto">
+      </div>
+    </div>
+    <p class="ml-36 text-neutral03 text-[10px]">File size max. 2MB</p>
+  </div>
+  <div class="mb-4 flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04" for="category" required>
+      Category<span class="text-danger">*</span>
+    </label>
+    <select class="input-primary pl-2" name="category" id="category" required>
+      <option value="small" <%= car.category == 'small' ? 'selected' : '' %>>Small</option>
+      <option value="medium" <%= car.category == 'medium' ? 'selected' : '' %>>Medium</option>
+      <option value="large" <%= car.category == 'large' ? 'selected' : '' %>>Large</option>
+    </select>
+  </div>
+  <div class="mb-4 flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04" for="start-rent">
+      Start Rent
+    </label>
+    <input value="<%=car.start_rent.substr(0, 10) %>" class="input-primary" type="date" name="start_rent" id="start-rent">
+  </div>
+  <div class="mb-4 flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04" for="finish-rent">
+      Finish Rent
+    </label>
+    <input value="<%=car.finish_rent.substr(0, 10) %>" class="input-primary" type="date" name="finish_rent" id="finish-rent">
+  </div>
+  <div class="mb-4 flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04">
+      Created at
+    </label>
+    <p class="mr-2"><%= new Date(car.createdAt).toLocaleDateString('en-GB') %></p>
+    <%= new Date(car.createdAt).toLocaleTimeString() %>
+  </div>
+  <div class="flex items-center text-xs font-light">
+    <label class="block w-36 text-neutral04">
+      Updated at
+    </label>
+    <p class="mr-2"><%= new Date(car.updatedAt).toLocaleDateString('en-GB') %> </p>
+    <%= new Date(car.updatedAt).toLocaleTimeString() %>
+  </div>
+</div>
+<div class="bottom-0 absolute mb-10">
+  <a href="/list-car" class="btn-outline" type="button">cancel</a>
+  <a class="btn-primary" onclick="handleUpdateCar('<%= car._id %>')">save</a>
+</div>
+
+<script>
+  const handleUpdateCar = async (id) => {
+    const name = document.querySelector('#name').value
+    const price = document.querySelector('#price').value
+    const foto = document.querySelector('#foto')
+    const category = document.querySelector('#category').value
+    const start_rent = document.querySelector('#start-rent').value
+    const finish_rent = document.querySelector('#finish-rent').value
+
+    const dataBody = new FormData()
+    dataBody.append('name', name)
+    dataBody.append('price', price)
+    foto.files.length > 0 ? dataBody.append('foto', foto.files[0]) : ""
+    dataBody.append('category', category)
+    dataBody.append('start_rent', start_rent)
+    dataBody.append('finish_rent', finish_rent)
+
+    const response = await fetch(`/list-car/edit-car/${id}`, {
+      method: 'PUT',
+      body: dataBody
+    })
+
+    const data = await response.json()
+
+    const alertCar = document.querySelector('#alert-car')
+    alertCar.textContent = data.message
+
+    alertCar.classList.remove('hidden')
+
+    setTimeout(() => {
+      alertCar.classList.add('hidden')
+      location.replace('/list-car')
+    }, 3000)
+  }
+</script>

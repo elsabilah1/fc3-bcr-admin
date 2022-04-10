@@ -1,0 +1,46 @@
+<table id="table-car" class="table-fixed w-full border-collapse">
+  <thead class="bg-darkblue01 text-sm">
+    <tr>
+      <th class="w-14 py-3">No</th>
+      <% carTitles.forEach((title)=>{ %>
+      <th>
+        <div class="flex items-center justify-between pr-4">
+          <%= title %>
+        </div>
+      </th>
+      <% }) %>
+    </tr>
+  </thead>
+  <tbody>
+    <% if(cars){ %>
+    <% cars.map((car,i)=>{ %>
+    <tr class="text-sm bg-white border-b border-neutral02">
+      <td class="py-3 text-center">
+        <%= i+1 %>
+      </td>
+      <td class="capitalize">
+        <%= car.name %>
+      </td>
+      <td class="capitalize">
+        <%= car.category %>
+      </td>
+      <td>
+        <%= new Intl.NumberFormat('id-ID', { style: 'currency' , currency: 'IDR' }).format(car.price) %>
+      </td>
+      <td>
+        <%= new Date(car.start_rent).toLocaleDateString('en-GB')%>
+      </td>
+      <td>
+        <%= new Date(car.finish_rent).toLocaleDateString('en-GB')%>
+      </td>
+      <td>
+        <%= new Date(car.createdAt).toLocaleDateString('en-GB')%>
+      </td>
+      <td>
+        <%= new Date(car.updatedAt).toLocaleDateString('en-GB')%>
+      </td>
+    </tr>
+    <% }) %>
+    <% } %>
+  </tbody>
+</table>

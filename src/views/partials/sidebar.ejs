@@ -1,0 +1,32 @@
+<aside id="sidebar">
+  <div class="flex fixed w-1/5">
+    <div class="bg-darkblue04 h-screen w-2/5 text-center">
+      <div class="h-16 flex items-center justify-center">
+        <div class="bg-darkblue01 w-8 h-8"></div>
+      </div>
+      <a class="block py-3 hover:bg-white/30 <%= title == 'Dashboard' ? 'bg-white/30 font-bold' : 'font-light' %> " href="/dashboard">
+        <i class="mx-auto stroke-white" data-feather="home"></i>
+        <span class="text-xs text-white">Dashboard</span>
+      </a>
+      <a class="block py-3 hover:bg-white/30 <%= title == 'Cars' ? 'bg-white/30 font-bold' : 'font-light' %>  " href="/list-car">
+        <i class="mx-auto stroke-white" data-feather="truck"></i>
+        <span class="text-xs text-white">Cars</span>
+      </a>
+    </div>
+    <div class="w-full bg-white">
+      <div class="h-16 pl-6 shadow-head flex items-center">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      <div class="pt-4">
+        <p class="pt-5 pl-6 pb-4 text-neutral03 font-bold text-sm uppercase">
+          <%= title %>
+        </p>
+        <div class="bg-darkblue01">
+          <p class="py-3 pl-6 text-neutral05 font-bold text-sm">
+            <%= title=='Dashboard' ? title : 'List Car' %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

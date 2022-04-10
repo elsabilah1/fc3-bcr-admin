@@ -1,0 +1,43 @@
+<table id="table-order" class="table-fixed w-full border-collapse">
+  <thead class="bg-darkblue01 text-sm">
+    <tr>
+      <th class="w-14 py-3">No</th>
+      <% orderTitles.forEach((title)=>{ %>
+      <th>
+        <div class="flex items-center justify-between pr-4">
+          <%= title %>
+        </div>
+      </th>
+      <% }) %>
+    </tr>
+  </thead>
+  <tbody>
+    <% if(orders){ %>
+    <% orders.map((order,i)=>{ %>
+    <tr class="text-sm bg-white border-b border-neutral02">
+      <td class="py-3 text-center">
+        <%= i+1 %>
+      </td>
+      <td class="first-letter:uppercase">
+        <%= order.email %>
+      </td>
+      <td>
+        <%= order.car %>
+      </td>
+      <td>
+        <%= new Date(order.start_rent).toLocaleDateString('en-GB')%>
+      </td>
+      <td>
+        <%= new Date(order.finish_rent).toLocaleDateString('en-GB')%>
+      </td>
+      <td>
+        <%= new Intl.NumberFormat('id-ID', { style: 'currency' , currency: 'IDR' }).format(order.price) %>
+      </td>
+      <td>
+        <%= order.status %>
+      </td>
+    </tr>
+    <% }) %>
+    <% } %>
+  </tbody>
+</table>

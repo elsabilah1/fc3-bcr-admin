@@ -1,0 +1,11 @@
+<h1 class="text-danger text-8xl mb-6">
+  <%= error.status===404 ? 'Oops!' : 'Sorry..' %>
+</h1>
+<h2 class="text-neutral04 max-w-lg">
+  <span class="block text-3xl font-bold">
+    <%= error.status %>
+  </span>
+  <%= error.status===404
+        ? 'We were unable to find the page you were looking for, but working hard to resolve this issue.' :
+        error.message %>
+</h2>

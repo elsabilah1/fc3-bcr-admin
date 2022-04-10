@@ -1,0 +1,32 @@
+<div class="bg-white shadow-low p-6 rounded-lg">
+  <div class="px-4 py-8 mb-4">
+    <img class="mx-auto h-40 object-contain" src="<%= car.foto %>" alt="mobil">
+  </div>
+  <h1 class="text-sm mb-2 capitalize">
+    <%= car.name %>
+  </h1>
+  <p class="font-bold mb-4">
+    <%=new Intl.NumberFormat('id-ID', { style: 'currency' , currency: 'IDR' }).format(car.price)%> / hari
+  </p>
+  <div class="text-sm font-light flex items-center mb-4">
+    <i class="stroke-1 stroke-neutral03 mr-2" data-feather="key"></i>
+    <%= new Date(car.start_rent).toLocaleDateString('en-GB') %>
+    -
+    <%= new Date(car.finish_rent).toLocaleDateString('en-GB') %>
+  </div>
+  <div class="text-sm font-light flex items-center mb-6">
+    <i class="stroke-1 stroke-neutral03 mr-2" data-feather="clock"></i>
+    Updated at <%= new Date(car.updatedAt).toLocaleDateString('en-GB')%>
+    <%= new Date(car.updatedAt).toLocaleTimeString() %>
+  </div>
+  <div class="flex justify-between gap-4">
+    <a onclick="openDialogBox('<%= car._id %>')" class="cursor-pointer w-full py-3 flex items-center justify-center border border-danger text-danger text-sm font-bold rounded-sm hover:bg-danger hover:text-white group">
+      <i class="mr-3 group-hover:stroke-white" data-feather="trash"></i>
+      Delete
+    </a>
+    <a class=" m- cursor-pointer w-full py-3 flex items-center justify-center border border-limegreen04 bg-limegreen04 text-white text-sm font-bold rounded-sm hover:bg-limegreen05 hover:border-limegreen05 active:bg-limegreen03 active:border-limegreen03" href="/list-car/edit-car?id=<%= car._id %>">
+      <i class="mr-3" data-feather="edit"></i>
+      Edit
+    </a>
+  </div>
+</div>

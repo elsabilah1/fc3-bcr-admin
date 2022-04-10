@@ -1,0 +1,18 @@
+<form action="/login" method="post">
+  <img src="/images/logo.png" alt="logo">
+  <h1 class="text-2xl font-bold my-8">Welcome, Admin BCR</h1>
+  <% if(statusCode !== 200) { %>
+  <div class="bg-danger/10 text-danger text-xs font-light py-3 px-4 rounded-md mb-8">
+    <%= message %>
+  </div>
+  <% } %>
+  <label class="text-sm font-light mb-2" for="email">
+    Email
+    <input class="auth-input" type="text" name="email" id="email" placeholder="Contoh: johndee@gmail.com">
+  </label>
+  <label class="text-sm font-light mb-2" for="password">
+    Password
+    <input class="auth-input" type="password" name="password" id="password" placeholder="+6 karakter">
+  </label>
+  <button class="w-full mt-6 btn-primary" type="submit">Sign In</button>
+</form>

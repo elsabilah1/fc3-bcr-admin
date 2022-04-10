@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body class="bg-board">
+  <div class="flex">
+    <%- include('../partials/sidebar') %>
+    <div id="main" class="relative w-4/5 ml-auto min-h-screen">
+      <div class="fixed flex top-24 w-4/5">
+        <div id="alert-car" class="hidden bg-success z-10 mx-auto py-3 px-36 text-white font-medium  shadow-md rounded-[4px]">
+        </div>
+      </div>
+      <%- include('../partials/header') %>
+      <main class="py-8 px-6">
+        <%- include('../partials/breadcrumb') %>
+        <%- body %>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // feather icons 
+    feather.replace()
+
+    // Sidebar
+    const sidebar = document.querySelector('#sidebar')
+    const main = document.querySelector('#main')
+
+    const sidebarToggle = () => {
+      if (sidebar.className.includes('hidden')) {
+        sidebar.classList.remove('hidden')
+        main.classList.replace('w-full', 'w-4/5')
+      } else {
+        sidebar.classList.add('hidden')
+        main.classList.replace('w-4/5', 'w-full')
+      }
+    }
+
+    // Dropdown header
+    document.querySelector('#dropdown-btn').addEventListener('click', () => {
+      const list = document.querySelector('#dropdown-list')
+
+      if (list.className.includes('hidden')) {
+        list.classList.remove('hidden')
+      } else {
+        list.classList.add('hidden')
+      }
+
+    })
+  </script>
+</body>
+
+</html>
